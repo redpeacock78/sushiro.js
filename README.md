@@ -1,5 +1,5 @@
 # sushiro.js
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/redpeacock78/sushiro.js/blob/master/LICENSE)  [![npm version](https://badge.fury.io/js/sushiro.js.svg)](https://badge.fury.io/js/sushiro.js) [![Npm Publish](https://github.com/redpeacock78/sushiro.js/actions/workflows/npm-publish.yml/badge.svg?branch=master)](https://github.com/redpeacock78/sushiro.js/actions/workflows/npm-publish.yml) [![Maintainability](https://api.codeclimate.com/v1/badges/1475f12e9437c19434ba/maintainability)](https://codeclimate.com/github/redpeacock78/sushiro.js/maintainability) [![codecov](https://codecov.io/gh/redpeacock78/sushiro.js/branch/main/graph/badge.svg?token=E0WE1464IN)](https://codecov.io/gh/redpeacock78/sushiro.js)  
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/redpeacock78/sushiro.js/blob/master/LICENSE)  [![npm version](https://badge.fury.io/js/sushiro.js.svg)](https://badge.fury.io/js/sushiro.js) [![Npm Publish](https://github.com/redpeacock78/sushiro.js/actions/workflows/npm-publish.yml/badge.svg?branch=master)](https://github.com/redpeacock78/sushiro.js/actions/workflows/npm-publish.yml) [![Maintainability](https://api.codeclimate.com/v1/badges/1475f12e9437c19434ba/maintainability)](https://codeclimate.com/github/redpeacock78/sushiro.js/maintainability) [![codecov](https://codecov.io/gh/redpeacock78/sushiro.js/branch/master/graph/badge.svg?token=E0WE1464IN)](https://codecov.io/gh/redpeacock78/sushiro.js)  
 🍣 A Node.js porting of [sushiro](https://github.com/redpeacock78/sushiro).🍣 
 
 ## 🛠 Usage
@@ -121,7 +121,7 @@ If there is no menu that matches the argument, it will return an error.
 (async () => {
     const sushiro = new Sushiro();
     console.log(await sushiro.calorie()); // No Argument
-    console.log(await sushiro.calorie('サーモン')); // When "えび" is specified as an argument
+    console.log(await sushiro.calorie('サーモン')); // When "サーモン" is specified as an argument
     await sushiro.calorie('Google').catch(() => {
       console.error('There is no item with that name!'); // When the search result does not exist
     });
