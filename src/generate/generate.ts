@@ -11,37 +11,38 @@ const get_menu: get_menu = async (URL: string): Promise<string[][]> => {
     .then((resp: AxiosResponse<string>): string[][] => {
       const data_arr: string[] = resp.data.toString().split("\n");
       const reg_exp = new RegExp(/<("[^"]*"|'[^']*'|[^'">])*>/g);
-      const title: string[] = [];
-      data_arr.map((i: string): void => {
-        if (i.match(/<p class="ttl">/)) {
-          title.push(i.replace(reg_exp, ""));
-        }
-      });
-      const price: string[] = [];
-      data_arr.map((i: string): void => {
-        if (i.match(/<p class="price">/)) {
-          price.push(
-            i.replace(reg_exp, "").replace(" + 税", "+税").replace(/ .*$/, "")
-          );
-        }
-      });
-      const calorie: string[] = [];
-      data_arr.map((i: string): void => {
-        if (i.match(/<p class="price">/)) {
-          calorie.push(
-            i
+      const title: string[] = data_arr
+        .map((i: string): string => {
+          if (i.match(/<p class="ttl">/)) {
+            return i.replace(reg_exp, "");
+          }
+        })
+        .filter(Boolean);
+      const price: string[] = data_arr
+        .map((i: string): string => {
+          if (i.match(/<p class="price">/)) {
+            return i
+              .replace(reg_exp, "")
+              .replace(" + 税", "+税")
+              .replace(/ .*$/, "");
+          }
+        })
+        .filter(Boolean);
+      const calorie: string[] = data_arr
+        .map((i: string): string => {
+          if (i.match(/<p class="price">/)) {
+            return i
               .replace(reg_exp, "")
               .replace(" + 税", "+税")
               .replace("場合 ", "場合")
               .replace(/　/g, " ")
-              .split(" ")[1]
-          );
-        }
+              .split(" ")[1];
+          }
+        })
+        .filter(Boolean);
+      const menu: string[][] = title.map((v: string, i: number): string[] => {
+        return [v, price[i], calorie[i]];
       });
-      const menu: string[][] = [];
-      for (let i = 0; i < title.length; i++) {
-        menu[i] = [title[i], price[i], calorie[i]];
-      }
       return menu;
     });
 };
