@@ -5,6 +5,7 @@ const packageJson = require("../package.json");
 const command = new Command();
 command
     .name('sushiro-js')
+    .description(packageJson.description)
     .option(
         "-r [number]",
         "Randomly display the number of specified menus (By default it display one item)"
@@ -21,7 +22,7 @@ command
         "-a",
         "Display names of all menus (158 species in total)"
     )
-    .version(packageJson.version, "-v, --version", "Output the version number")
+    .version(`sushiro.js version ${packageJson.version}`, "-v, --version", "Output the version number")
     .parse(process.argv);
 
 const options = command.opts();
