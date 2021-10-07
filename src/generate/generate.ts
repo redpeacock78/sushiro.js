@@ -1,3 +1,4 @@
+import "../libs/unescapeHtml";
 import axios, { AxiosResponse } from "axios";
 
 const URL = "https://www.akindo-sushiro.co.jp/menu/";
@@ -14,7 +15,7 @@ const get_menu: get_menu = async (URL: string): Promise<string[][]> => {
       const title: string[] = data_arr
         .map((i: string): string => {
           if (i.match(/<p class="ttl">/)) {
-            return i.replace(reg_exp, "");
+            return i.replace(reg_exp, "").unescapeHtml();
           }
         })
         .filter(Boolean);
@@ -24,7 +25,8 @@ const get_menu: get_menu = async (URL: string): Promise<string[][]> => {
             return i
               .replace(reg_exp, "")
               .replace(" + 税", "+税")
-              .replace(/ .*$/, "");
+              .replace(/ .*$/, "")
+              .unescapeHtml();
           }
         })
         .filter(Boolean);
@@ -36,7 +38,8 @@ const get_menu: get_menu = async (URL: string): Promise<string[][]> => {
               .replace(" + 税", "+税")
               .replace("場合 ", "場合")
               .replace(/　/g, " ")
-              .split(" ")[1];
+              .split(" ")[1]
+              .unescapeHtml();
           }
         })
         .filter(Boolean);
